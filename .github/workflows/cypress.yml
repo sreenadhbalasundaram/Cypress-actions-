@@ -1,8 +1,5 @@
 name: Cypress Tests
 
-env:
-  PROJECT_NAME: PROJECT_NAME
-
 on:
   push:
     branches:
@@ -31,6 +28,8 @@ jobs:
         run: |
           jq --arg project "$PROJECT_NAME" '.run_settings.project_name = $project' lambdatest-config.json > tmp.json && mv tmp.json lambdatest-config.json
           echo "Updated project_name in lambdatest-config.json to $PROJECT_NAME"
+        env:
+          PROJECT_NAME: ${{ vars.PROJECT_NAME }}
 
       - name: Run Cypress tests
         run: npx lambdatest-cypress run
