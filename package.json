@@ -8,10 +8,16 @@
     "cy:open": "cypress open"
   },
   "dependencies": {
-    "cypress": "^9.0.0",
-    "cypress-terminal-report": "^1.8.0"
+    "cypress": "13.14.2",
+    "lambdatest-cypress-cli": "3.0.31",
+    "@lambdatest/cypress-driver": "1.0.8"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "cypress-terminal-report": "7.0.2"
+
+  },
   "author": "Your Name",
   "license": "MIT"
+
+  
 }
