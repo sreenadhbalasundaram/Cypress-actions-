@@ -1,0 +1,17 @@
+{
+  "name": "cypress-github",
+  "version": "1.0.0",
+  "description": "A project to run Cypress tests using GitHub Actions.",
+  "main": "index.js",
+  "scripts": {
+    "test": "cypress run",
+    "cy:open": "cypress open"
+  },
+  "dependencies": {
+    "cypress": "^9.0.0",
+    "cypress-terminal-report": "^1.8.0"
+  },
+  "devDependencies": {},
+  "author": "Your Name",
+  "license": "MIT"
+}
