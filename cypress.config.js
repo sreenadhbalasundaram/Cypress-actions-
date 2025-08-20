@@ -25,7 +25,7 @@ module.exports = defineConfig({
     baseUrl: "https://example.cypress.io",
     viewportWidth: 1920,
     viewportHeight: 1080,
-    video: true,
+    // video: true,
     videoCompression: false,
   }, 
 });

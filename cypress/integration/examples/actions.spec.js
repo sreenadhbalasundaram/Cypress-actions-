@@ -1,26 +1,28 @@
-describe('Actions Test Suite', () => {
-  beforeEach(() => {
-    cy.visit('/'); // Visit the base URL defined in cypress.config.js
-  });
+describe('E2E Tests - Login', () => {
+    it('I navigate to the login page', () => {
+        cy.visit('https://the-internet.herokuapp.com/login')
+        cy.get('h2').should('contain', 'Login Page')
+    })
 
-  it('should perform a click action', () => {
-    cy.get('button#click-me').click(); // Adjust the selector as needed
-    cy.get('div#result').should('contain', 'Button clicked!'); // Adjust the expected result
-  });
+    it('I submit invalid login credentials', () => {
+        cy.get('#username').type('invalid_usr')
+        cy.get('#password').type('invalid_pass')
+        cy.get('button[type="submit"]').click()
+        cy.get('.flash.error').should('be.visible')
+        cy.screenshot({capture: 'fullPage'})
+    })
 
-  it('should fill out a form', () => {
-    cy.get('input#name').type('John Doe'); // Adjust the selector as needed
-    cy.get('form').submit();
-    cy.get('div#confirmation').should('contain', 'Thank you, John Doe!'); // Adjust the expected result
-  });
+    it('I submit valid login credentials', () => {
+        cy.get('#username').type('tomsmith')
+        cy.get('#password').type('SuperSecretPassword!')
+        cy.get('button[type="submit"]').click()
+        cy.get('.flash.success').should('be.visible')
+        cy.screenshot({capture: 'fullPage'})
+    })
 
-  it('should check a checkbox', () => {
-    cy.get('input#subscribe').check(); // Adjust the selector as needed
-    cy.get('input#subscribe').should('be.checked');
-  });
-
-  it('should select an option from a dropdown', () => {
-    cy.get('select#options').select('Option 1'); // Adjust the selector and option as needed
-    cy.get('div#selected-option').should('contain', 'You selected: Option 1'); // Adjust the expected result
-  });
-});
+    it('I logout from the app', () => {
+        cy.get('.button.secondary.radius').click()
+        cy.get('h2').should('contain', 'Login Page')
+        cy.screenshot({capture: 'fullPage'})
+    })
+})
